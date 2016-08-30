@@ -23,6 +23,7 @@
 		1AD88A711D74135700D46419 /* ParallaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD88A701D74135700D46419 /* ParallaxViewController.m */; };
 		1AD88A741D7413D900D46419 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1AD88A721D7413D900D46419 /* background.jpg */; };
 		1AD88A751D7413D900D46419 /* star.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1AD88A731D7413D900D46419 /* star.jpeg */; };
+		BF47CF711D75859500719B91 /* CKShimmerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF47CF701D75859500719B91 /* CKShimmerLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		1AD88A701D74135700D46419 /* ParallaxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxViewController.m; sourceTree = "<group>"; };
 		1AD88A721D7413D900D46419 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		1AD88A731D7413D900D46419 /* star.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = star.jpeg; sourceTree = "<group>"; };
+		BF47CF6F1D75859500719B91 /* CKShimmerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKShimmerLabel.h; sourceTree = "<group>"; };
+		BF47CF701D75859500719B91 /* CKShimmerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKShimmerLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +173,8 @@
 		1AD88A5F1D74052700D46419 /* JXTLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				BF47CF6F1D75859500719B91 /* CKShimmerLabel.h */,
+				BF47CF701D75859500719B91 /* CKShimmerLabel.m */,
 				1AD88A6C1D740DB800D46419 /* CBAutoScrollLabel.h */,
 				1AD88A6D1D740DB800D46419 /* CBAutoScrollLabel.m */,
 				1AD88A601D74052700D46419 /* JXTHollowOutLabel.h */,
@@ -320,6 +325,7 @@
 				1AD88A681D74052700D46419 /* JXTHollowOutLabel.m in Sources */,
 				1AD88A711D74135700D46419 /* ParallaxViewController.m in Sources */,
 				1AD88A311D74047B00D46419 /* AppDelegate.m in Sources */,
+				BF47CF711D75859500719B91 /* CKShimmerLabel.m in Sources */,
 				1AD88A6E1D740DB800D46419 /* CBAutoScrollLabel.m in Sources */,
 				1AD88A2E1D74047B00D46419 /* main.m in Sources */,
 				1AD88A691D74052700D46419 /* JXTProgressLabel.m in Sources */,
@@ -550,6 +556,7 @@
 				1AD88A581D74047B00D46419 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1AD88A591D74047B00D46419 /* Build configuration list for PBXNativeTarget "JGMarkLableTests" */ = {
 			isa = XCConfigurationList;
@@ -558,6 +565,7 @@
 				1AD88A5B1D74047B00D46419 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1AD88A5C1D74047B00D46419 /* Build configuration list for PBXNativeTarget "JGMarkLableUITests" */ = {
 			isa = XCConfigurationList;
@@ -566,6 +574,7 @@
 				1AD88A5E1D74047B00D46419 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

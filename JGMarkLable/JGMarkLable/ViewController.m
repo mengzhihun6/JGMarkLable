@@ -11,7 +11,7 @@
 #import "CBAutoScrollLabel.h"
 #import "JXTHollowOutLabel.h"
 #import "JXTSlideClipLabel.h"
-
+#import "CKShimmerLabel.h"
 #import "ParallaxViewController.h"
 
 
@@ -19,7 +19,9 @@
 #define kDeviceHight [UIScreen mainScreen].bounds.size.height
 
 
-@interface ViewController ()
+@interface ViewController () {
+    JXTSlideClipLabel * _clipLabel;
+}
 
 @property (nonatomic, strong) JXTProgressLabel *progressLable;
 @property (nonatomic, strong) JXTProgressLabel *progressLable2;
@@ -32,6 +34,13 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) NSTimer *timer2;
 @property (nonatomic, strong) NSTimer *timer3;
+
+//闪烁字
+@property (strong, nonatomic) CKShimmerLabel *label1;
+@property (strong, nonatomic) CKShimmerLabel *label2;
+@property (strong, nonatomic) CKShimmerLabel *label3;
+@property (strong, nonatomic) CKShimmerLabel *label4;
+
 @end
 
 @implementation ViewController
@@ -53,7 +62,63 @@
     
     //5 导航栏
     [self settingNavItems];
+    
+    //6. 闪烁文字
+    [self flashingLable];
 }
+
+#pragma mark - 闪烁文字 -
+- (void)flashingLable {
+   
+    CGFloat maxY = CGRectGetMaxY(_clipLabel.frame) + 40;
+    
+    self.label1 = [[CKShimmerLabel alloc] init];
+    self.label1.frame = CGRectMake(20, maxY + 20, 200, 35);
+    self.label1.text = @"hello world 1";
+    self.label1.textColor = [UIColor grayColor];
+    self.label1.font = [UIFont systemFontOfSize:25];
+    [self.label1 startShimmer];                 // 开启闪烁
+    [self.view addSubview:self.label1];
+    
+    
+    self.label2 = [[CKShimmerLabel alloc] init];
+    self.label2.frame = CGRectMake(20, maxY + 60, 200, 35);
+    self.label2.text = @"hello world 2";
+    self.label2.textColor = [UIColor grayColor];
+    self.label2.font = [UIFont systemFontOfSize:25];
+    self.label2.shimmerType = ST_RightToLeft;           // 滚动方向 right to left
+    self.label2.durationTime = 0.7;                     // 滚动时间
+    self.label2.shimmerColor = [UIColor orangeColor];   // 高亮颜色
+    [self.label2 startShimmer];                         // 开启闪烁
+    [self.view addSubview:self.label2];
+ 
+    self.label3 = [[CKShimmerLabel alloc] init];
+    self.label3.frame = CGRectMake(20, maxY + 100, 200, 35);
+    self.label3.text = @"hello world 3";
+    self.label3.textColor = [UIColor grayColor];
+    self.label3.font = [UIFont systemFontOfSize:25];
+    self.label3.shimmerType = ST_AutoReverse;
+    self.label3.shimmerWidth = 20;                      // 高亮的宽度
+    self.label3.shimmerRadius = 20;                     // 阴影的宽度
+    self.label3.shimmerColor = [UIColor yellowColor];   // 高亮颜色
+    [self.label3 startShimmer];                         // 开启闪烁
+    [self.view addSubview:self.label3];
+    
+    
+    self.label4 = [[CKShimmerLabel alloc] init];
+    self.label4.frame = CGRectMake(20, maxY + 140, 200, 35);
+    self.label4.text = @"hello world 4";
+    self.label4.textColor = [UIColor grayColor];
+    self.label4.font = [UIFont systemFontOfSize:25];
+    self.label4.shimmerType = ST_ShimmerAll;
+    self.label4.durationTime = 0.5;
+    self.label4.shimmerColor = [UIColor redColor];
+    [self.label4 startShimmer];
+    [self.view addSubview:self.label4];
+
+    
+}
+
 
 #pragma mark - 5.导航栏 -
 - (void)settingNavItems {
@@ -82,9 +147,9 @@
 {
     NSArray * titleArr = @[@"水星", @"金星", @"地球", @"火星", @"木星", @"土星"];
     
-    JXTSlideClipLabel * label = [[JXTSlideClipLabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_hollowBkView.frame) + 80, self.view.frame.size.width, 80) andTitleArray:titleArr];
-    label.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:label];
+    _clipLabel = [[JXTSlideClipLabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_hollowBkView.frame) + 80, self.view.frame.size.width, 50) andTitleArray:titleArr];
+    _clipLabel.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:_clipLabel];
 }
 
 #pragma mark - 3.镂空字label -
@@ -138,7 +203,7 @@
 #pragma mark - 2.autoScrollLabel的使用 -
 - (void)createCBAutoScrollLabel {
     
-    _autoScrollLabel = [[CBAutoScrollLabel alloc] initWithFrame:CGRectMake(10, 64, kDeviceWidth - 20, 50)];
+    _autoScrollLabel = [[CBAutoScrollLabel alloc] initWithFrame:CGRectMake(10, 64, kDeviceWidth - 20, 30)];
 //    _autoScrollLabel.center = CGPointMake(kDeviceWidth * 0.5, 64);
     [self.view addSubview:_autoScrollLabel];
     self.autoScrollLabel.text = @"苹果公司是美国的一家高科技公司。由史蒂夫·乔布斯、斯蒂夫·沃兹尼亚克和罗·韦恩等人于1976年4月1日创立，并命名为美国苹果电脑公司， 2007年1月9日更名为苹果公司，总部位于加利福尼亚州的库比蒂诺";
@@ -146,7 +211,7 @@
     self.autoScrollLabel.layer.cornerRadius = 4;
     self.autoScrollLabel.textColor = [UIColor redColor];
     self.autoScrollLabel.backgroundColor = [UIColor whiteColor];
-    self.autoScrollLabel.font = [UIFont systemFontOfSize:20];//字体大小
+    self.autoScrollLabel.font = [UIFont systemFontOfSize:17];//字体大小
     self.autoScrollLabel.labelSpacing = 30; // 开始和结束标签之间的距离
     self.autoScrollLabel.pauseInterval = 1.7; // 一秒的停顿之后再开始滚动
     self.autoScrollLabel.scrollSpeed = 30; // 每秒像素
@@ -160,24 +225,24 @@
 #pragma mark - 1.progressLabel的使用 -
 - (void)createProgressLable {
     
-    _progressLable = [[JXTProgressLabel alloc] initWithFrame:CGRectMake(0, 0, 220, 50)];
-    _progressLable.center = CGPointMake(kDeviceWidth * 0.5, 100 + 64);
+    _progressLable = [[JXTProgressLabel alloc] initWithFrame:CGRectMake(0, 0, 220, 30)];
+    _progressLable.center = CGPointMake(kDeviceWidth * 0.5, 60 + 64);
     _progressLable.backgroundColor = [UIColor lightGrayColor];
     _progressLable.backgroundTextColor = [UIColor whiteColor];
     _progressLable.foregroundTextColor = [UIColor orangeColor];
     _progressLable.text = @"显示一句话，看着像歌词";
     _progressLable.textAlignment = NSTextAlignmentCenter;
-    _progressLable.font = [UIFont systemFontOfSize:20];
+    _progressLable.font = [UIFont systemFontOfSize:17];
     [self.view addSubview:_progressLable];
     
-    _progressLable2 = [[JXTProgressLabel alloc] initWithFrame:CGRectMake(0, 0, 220, 50)];
-    _progressLable2.center = CGPointMake(kDeviceWidth * 0.5, 155 + 64);
+    _progressLable2 = [[JXTProgressLabel alloc] initWithFrame:CGRectMake(0, 0, 220, 30)];
+    _progressLable2.center = CGPointMake(kDeviceWidth * 0.5, 100 + 64);
     _progressLable2.backgroundColor = [UIColor lightGrayColor];
     _progressLable2.backgroundTextColor = [UIColor whiteColor];
     _progressLable2.foregroundTextColor = [UIColor cyanColor];
     _progressLable2.text = @"显示一句话，看着像歌词";
     _progressLable2.textAlignment = NSTextAlignmentCenter;
-    _progressLable2.font = [UIFont systemFontOfSize:20];
+    _progressLable2.font = [UIFont systemFontOfSize:17];
     [self.view addSubview:_progressLable2];
     
     UIButton *start = [UIButton buttonWithType:UIButtonTypeCustom];
